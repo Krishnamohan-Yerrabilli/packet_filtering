@@ -248,10 +248,10 @@ int main(int argc, char *argv[]){
       int r;
       r = recvfrom(sfd, buffer, sizeof(buffer), 0,  (struct sockaddr *)&addr, (socklen_t*)&saddr_len);
       if(r < 0){
-	  perror("recvfrom");
+	  perror("recvfrom"); 
           exit(EXIT_FAILURE);
       }
-	   
+      addr.sll_family = AF_PACKET;   
       print_ethernet_header(buffer);
       print_ip_header(buffer);
       print_icmp_header(buffer);
